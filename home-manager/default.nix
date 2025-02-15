@@ -32,13 +32,6 @@
     enable = true;
     interactiveShellInit = ''
       fish_vi_key_bindings
-
-      # start or attach to default tmux session
-      if not set -q TMUX
-        set -g TMUX tmux new-session -d -s default
-        eval $TMUX
-        tmux attach-session -d -t default
-      end
     '';
     shellAbbrs = {
       j = "jj";
