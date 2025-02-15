@@ -32,6 +32,13 @@
     enable = true;
     interactiveShellInit = ''
       fish_vi_key_bindings
+
+      # start or attach to default tmux session
+      if not set -q TMUX
+        set -g TMUX tmux new-session -d -s default
+        eval $TMUX
+        tmux attach-session -d -t default
+      end
     '';
     shellAbbrs = {
       j = "jj";
@@ -57,7 +64,6 @@
     prefix = "C-a";
     sensibleOnTop = true;
     plugins = with pkgs.tmuxPlugins; [
-      sensible
       prefix-highlight
       vim-tmux-navigator
       catppuccin
@@ -68,6 +74,9 @@
       bind c new-window -c "#{pane_current_path}"
       bind '"' split-window -c "#{pane_current_path}"
       bind % split-window -h -c "#{pane_current_path}"
+
+      set -gu default-command
+      set -g default-shell "$SHELL"
     '';
   };
 
