@@ -60,6 +60,7 @@
       "alfred"
       "fantastical"
       "firefox"
+      "font-atkinson-hyperlegible-next"
       "ghostty"
       "karabiner-elements"
       "keepingyouawake"
