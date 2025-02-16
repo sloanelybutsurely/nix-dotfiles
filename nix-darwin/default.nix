@@ -20,6 +20,16 @@
       autohide-delay = 0.05;
       orientation = "bottom";
     };
+    finder = {
+      AppleShowAllExtensions = true;
+      AppleShowAllFiles = true;
+      CreateDesktop = false;
+      FXDefaultSearchScope = "SCcf"; # current folder
+      FXEnableExtensionChangeWarning = false;
+      NewWindowTarget = "Home";
+      ShowPathbar = true;
+      ShowStatusBar = true;
+    };
   };
 
   environment.shells = [ pkgs.fish ];
