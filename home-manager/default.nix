@@ -25,6 +25,7 @@
       font-family = "Maple Mono NF"
       font-size = 16
       theme = "catppuccin-mocha"
+      confirm-close-surface = false
     '';
   };
 
@@ -41,6 +42,7 @@
       end
     '';
     shellAbbrs = {
+      drs = "darwin-rebuild switch --flake ~/.config/nix-darwin";
       j = "jj";
     };
   };

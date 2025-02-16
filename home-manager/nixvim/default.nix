@@ -143,12 +143,39 @@
     plugins.cmp = {
       enable = true;
       autoEnableSources = true;
-      settings.sources = [
-        { name = "nvim_lsp"; }
-        { name = "luasnip"; }
-        { name = "path"; }
-        { name = "buffer"; }
-      ];
+      settings = {
+        sources = [
+          { name = "nvim_lsp"; }
+          { name = "luasnip"; }
+          { name = "path"; }
+          { name = "buffer"; }
+        ];
+        mappings = {
+          "<C-n>" = ''
+            cmp.mapping(function()
+              if cmp.visible() then
+                cmp.select_next_item({behavior = 'insert'})
+              else
+                cmp.complete()
+              end
+            end)
+          '';
+          "<C-p>" = ''
+            cmp.mapping(function()
+              if cmp.visible() then
+                cmp.select_prev_item({behavior = 'insert'})
+              else
+                cmp.complete()
+              end
+            end)
+          '';
+        };
+        snippet.expand = ''
+          function(args)
+            require('luasnip').lsp_expand(args.body)
+          end
+        '';
+      };
     };
 
     plugins.tmux-navigator.enable = true;

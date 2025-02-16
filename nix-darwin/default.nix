@@ -53,6 +53,7 @@
       "ghostty"
       "karabiner-elements"
       "keepingyouawake"
+      "obsidian"
       "tailscale"
     ];
 
