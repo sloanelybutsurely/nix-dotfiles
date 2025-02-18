@@ -53,6 +53,8 @@
 
     brews = [
       "mas"
+      "openssl"
+      "wxwidgets"
     ];
 
     casks = [

@@ -249,22 +249,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-old-fish": {
-      "locked": {
-        "lastModified": 1703624527,
-        "narHash": "sha256-e5XNMNJ2Z61MEnXeMbGkLqWr0FfgH3y5X+9nV15pJak=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c407032be28ca2236f45c49cfb2b8b3885294f7f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "c407032be28ca2236f45c49cfb2b8b3885294f7f",
-        "type": "github"
-      }
-    },
     "nixvim": {
       "inputs": {
         "devshell": "devshell",
@@ -321,7 +305,6 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-old-fish": "nixpkgs-old-fish",
         "nixvim": "nixvim"
       }
     },

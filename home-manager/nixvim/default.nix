@@ -24,6 +24,11 @@
         mode = ["n" "v"];
       }
       {
+        key = "q;";
+        action = "q:";
+        mode = ["n" "v"];
+      }
+      {
         key = "<leader>y";
         action = ''"+y'';
         mode = ["n" "v"];
@@ -88,6 +93,26 @@
         action = "<cmd>Telescope live_grep<cr>";
         mode = ["n"];
       }
+      {
+        key = "<C-h>";
+        action = "<cmd>ZellijNavigateLeft<cr>";
+        mode = ["n"];
+      }
+      {
+        key = "<C-j>";
+        action = "<cmd>ZellijNavigateDown<cr>";
+        mode = ["n"];
+      }
+      {
+        key = "<C-k>";
+        action = "<cmd>ZellijNavigateUp<cr>";
+        mode = ["n"];
+      }
+      {
+        key = "<C-l>";
+        action = "<cmd>ZellijNavigateRight<cr>";
+        mode = ["n"];
+      }
     ];
 
     extraPlugins = with pkgs.vimPlugins; [
@@ -119,6 +144,7 @@
         vim
         yaml
         elixir
+        heex
         javascript
         typescript
         css
@@ -146,39 +172,47 @@
       settings = {
         sources = [
           { name = "nvim_lsp"; }
-          { name = "luasnip"; }
+          { name = "snippy"; }
           { name = "path"; }
           { name = "buffer"; }
         ];
         mappings = {
           "<C-n>" = ''
-            cmp.mapping(function()
+            function(fallback) do
               if cmp.visible() then
-                cmp.select_next_item({behavior = 'insert'})
+                cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
               else
-                cmp.complete()
+                fallback()
               end
-            end)
+            end
           '';
           "<C-p>" = ''
-            cmp.mapping(function()
+            function(fallback) do
               if cmp.visible() then
-                cmp.select_prev_item({behavior = 'insert'})
+                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
               else
-                cmp.complete()
+                fallback()
               end
-            end)
+            end
+          '';
+          "<CR>" = ''
+            function(fallback)
+              if cmp.visible() then
+                cmp.confirm({ select = true })
+              else
+                fallback()
+              end
+            end
           '';
         };
         snippet.expand = ''
           function(args)
-            require('luasnip').lsp_expand(args.body)
+            require('snippy').expand_snippet(args.body)
           end
         '';
       };
     };
 
-    plugins.tmux-navigator.enable = true;
+    plugins.zellij-nav.enable = true;
   };
-
 }

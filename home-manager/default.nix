@@ -13,9 +13,9 @@
     };
 
     packages = with pkgs; [
-      watchman
       difftastic
-      maple-mono-NF
+      ripgrep
+      watchman
     ];
   };
 
@@ -34,11 +34,8 @@
     interactiveShellInit = ''
       fish_vi_key_bindings
 
-      # start or attach to default tmux session
-      if not set -q TMUX
-        set -g TMUX tmux new-session -d -s default
-        eval $TMUX
-        tmux attach-session -d -t default
+      if not set -q ZELLIJ
+        zellij attach --create default
       end
     '';
     shellAbbrs = {
@@ -59,26 +56,91 @@
     enableFishIntegration = true;
   };
 
-  programs.tmux = {
+  programs.zellij = {
     enable = true;
-    keyMode = "vi";
-    mouse = true;
-    prefix = "C-a";
-    sensibleOnTop = true;
-    plugins = with pkgs.tmuxPlugins; [
-      prefix-highlight
-      vim-tmux-navigator
-      catppuccin
-    ];
-    extraConfig = ''
-      set -g @catppuccin_flavor 'frappe'
+    enableFishIntegration = false;
+  };
 
-      bind c new-window -c "#{pane_current_path}"
-      bind '"' split-window -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
+  home.file.".config/zellij/config.kdl" = {
+    enable = true;
+    text = ''
+      pane_frames false
+      theme "catppuccin-mocha"
 
-      set -gu default-command
-      set -g default-shell "$SHELL"
+      ui {
+        pane_frames {
+          hide_session_name true
+        }
+      }
+
+      keybinds clear-defaults=true {
+        normal {
+          bind "Ctrl a" { SwitchToMode "tmux"; }
+        }
+        tmux {
+          bind "Esc" { SwitchToMode "Normal"; }
+
+          bind "1" { GoToTab 1; SwitchToMode "Normal"; }
+          bind "2" { GoToTab 2; SwitchToMode "Normal"; }
+          bind "3" { GoToTab 3; SwitchToMode "Normal"; }
+          bind "4" { GoToTab 4; SwitchToMode "Normal"; }
+          bind "5" { GoToTab 5; SwitchToMode "Normal"; }
+          bind "6" { GoToTab 6; SwitchToMode "Normal"; }
+          bind "7" { GoToTab 7; SwitchToMode "Normal"; }
+          bind "8" { GoToTab 8; SwitchToMode "Normal"; }
+          bind "9" { GoToTab 9; SwitchToMode "Normal"; }
+
+          bind "c" { NewTab; SwitchToMode "Normal"; }
+          bind "n" { GoToNextTab; SwitchToMode "Normal"; }
+          bind "p" { GoToPreviousTab; SwitchToMode "Normal"; }
+
+          bind "h" { MoveFocus "Left"; }
+          bind "j" { MoveFocus "Down"; }
+          bind "k" { MoveFocus "Up"; }
+          bind "l" { MoveFocus "Right"; }
+
+          bind "z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+
+          bind "d" { Detach; }
+
+          bind "\"" { NewPane "Down"; SwitchToMode "Normal"; }
+          bind "%" { NewPane "Right"; SwitchToMode "Normal"; }
+        }
+
+        shared_except "locked" {
+          bind "Ctrl h" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+              name "move_focus_or_tab";
+              payload "left";
+              move_mod "ctrl";
+            };
+          }
+
+          bind "Ctrl j" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+              name "move_focus";
+              payload "down";
+              move_mod "ctrl";
+            };
+          }
+
+          bind "Ctrl k" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+              name "move_focus";
+              payload "up";
+              move_mod "ctrl";
+            };
+          }
+
+          bind "Ctrl l" {
+            MessagePlugin "https://github.com/hiasr/vim-zellij-navigator/releases/download/0.2.1/vim-zellij-navigator.wasm" {
+              name "move_focus_or_tab";
+              payload "right";
+              move_mod "ctrl";
+            };
+          }
+        }
+      }
     '';
   };
 
