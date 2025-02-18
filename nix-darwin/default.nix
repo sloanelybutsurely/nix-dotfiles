@@ -58,14 +58,18 @@
     casks = [
       "1password"
       "alfred"
+      "dash@6"
       "fantastical"
       "firefox"
       "font-atkinson-hyperlegible-next"
+      "font-maple-mono-nf"
       "ghostty"
       "karabiner-elements"
       "keepingyouawake"
       "obsidian"
+      "rectangle"
       "tailscale"
+      "unnaturalscrollwheels"
     ];
 
     masApps = {
