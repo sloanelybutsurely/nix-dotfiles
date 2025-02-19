@@ -16,6 +16,7 @@
       difftastic
       ripgrep
       watchman
+      awscli2
     ];
   };
 

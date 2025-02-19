@@ -8,6 +8,7 @@
       "/Applications/Fantastical.app"
       "/System/Applications/Messages.app"
       "/Applications/Discord.app"
+      "/System/Applications/Music.app"
       "/Applications/Obsidian.app"
       "/Applications/Ghostty.app"
     ];
