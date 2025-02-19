@@ -20,7 +20,6 @@
   };
 
   home.file.".config/ghostty/config" = {
-    enable = true;
     text = ''
       font-family = "Maple Mono NF"
       font-size = 16
@@ -43,6 +42,18 @@
       j = "jj";
     };
   };
+  home.file.".config/fish/completions/jj.fish" = {
+    source = ./dotfiles/fish/completions/jj.fish;
+  };
+  home.file.".config/fish/functions/fish_prompt.fish" = {
+    source = ./dotfiles/fish/functions/fish_prompt.fish;
+  };
+  home.file.".config/fish/functions/fish_vcs_prompt.fish" = {
+    source = ./dotfiles/fish/functions/fish_vcs_prompt.fish;
+  };
+  home.file.".config/fish/functions/fish_jj_prompt.fish" = {
+    source = ./dotfiles/fish/functions/fish_jj_prompt.fish;
+  };
 
   programs.zoxide = {
     enable = true;
@@ -54,6 +65,14 @@
   programs.mise = {
     enable = true;
     enableFishIntegration = true;
+    globalConfig = {
+      tools = {
+        usage = "latest";
+        erlang = "27.2.3";
+        elixir = "1.18.2-otp-27";
+      };
+    };
+    settings.experimental = true;
   };
 
   programs.zellij = {
@@ -62,7 +81,6 @@
   };
 
   home.file.".config/zellij/config.kdl" = {
-    enable = true;
     text = ''
       pane_frames false
       theme "catppuccin-mocha"

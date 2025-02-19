@@ -16,6 +16,7 @@
   homebrew = {
     casks = [
       "discord"
+      "postgres-unofficial"
       "postico"
       "slack"
     ];
