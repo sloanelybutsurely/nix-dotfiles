@@ -171,16 +171,6 @@
       };
     };
 
-    plugins.none-ls = {
-      enable = true;
-      sources.formatting = {
-        mix.enable = true;
-        nixfmt.enable = true;
-        prettier.enable = true;
-        stylua.enable = true;
-      };
-    };
-
     plugins.telescope.enable = true;
 
     plugins.cmp = {
