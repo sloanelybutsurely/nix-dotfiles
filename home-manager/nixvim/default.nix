@@ -1,11 +1,8 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.nixvim = {
     enable = true;
 
-    globals = {
-      mapleader = " ";
-    };
+    globals = { mapleader = " "; };
 
     opts = {
       number = true;
@@ -21,105 +18,110 @@
       {
         key = ";";
         action = ":";
-        mode = ["n" "v"];
+        mode = [ "n" "v" ];
       }
       {
         key = "q;";
         action = "q:";
-        mode = ["n" "v"];
+        mode = [ "n" "v" ];
       }
       {
         key = "<leader>y";
         action = ''"+y'';
-        mode = ["n" "v"];
+        mode = [ "n" "v" ];
       }
       {
         key = "<leader>Y";
         action = ''"+Y'';
-        mode = ["n" "v"];
+        mode = [ "n" "v" ];
       }
       {
         key = "<leader>p";
         action = ''"+p'';
-        mode = ["n" "v"];
+        mode = [ "n" "v" ];
       }
       {
         key = "<leader>P";
         action = ''"+P'';
-        mode = ["n" "v"];
+        mode = [ "n" "v" ];
       }
       {
         key = "<leader>w";
         action = "<cmd>w<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<leader>q";
         action = "<cmd>q<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<esc>";
         action = "<cmd>nohlsearch<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = ''<leader>"'';
         action = "<cmd>split<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<leader>%";
         action = "<cmd>vsplit<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<leader><tab>";
         action = "<cmd>NERDTreeToggle<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<leader>fl";
         action = "<cmd>NERDTreeFind<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<leader><space>";
         action = "<cmd>Telescope find_files theme=dropdown<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<leader>/";
         action = "<cmd>Telescope live_grep<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<C-h>";
         action = "<cmd>ZellijNavigateLeft<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<C-j>";
         action = "<cmd>ZellijNavigateDown<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<C-k>";
         action = "<cmd>ZellijNavigateUp<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
       {
         key = "<C-l>";
         action = "<cmd>ZellijNavigateRight<cr>";
-        mode = ["n"];
+        mode = [ "n" ];
       }
     ];
 
-    extraPlugins = with pkgs.vimPlugins; [
-      vim-abolish
-      nerdtree
-      vim-rhubarb
-    ];
+    autoGroups = { format_on_save = { clear = true; }; };
+
+    autoCmd = [{
+      event = "BufWritePre";
+      group = "format_on_save";
+      pattern = "*";
+      command = "lua vim.lsp.buf.format()";
+    }];
+
+    extraPlugins = with pkgs.vimPlugins; [ vim-abolish nerdtree vim-rhubarb ];
 
     plugins.commentary.enable = true;
     plugins.repeat.enable = true;
@@ -162,6 +164,21 @@
         tailwindcss.enable = true;
         terraform_lsp.enable = true;
       };
+      keymaps.lspBuf = {
+        gd = "definition";
+        gi = "implementation";
+        gr = "references";
+      };
+    };
+
+    plugins.none-ls = {
+      enable = true;
+      sources.formatting = {
+        mix.enable = true;
+        nixfmt.enable = true;
+        prettier.enable = true;
+        stylua.enable = true;
+      };
     };
 
     plugins.telescope.enable = true;
@@ -172,42 +189,40 @@
       settings = {
         sources = [
           { name = "nvim_lsp"; }
-          { name = "snippy"; }
+          { name = "luasnip"; }
           { name = "path"; }
           { name = "buffer"; }
         ];
-        mappings = {
-          "<C-n>" = ''
-            function(fallback) do
-              if cmp.visible() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-              else
-                fallback()
-              end
-            end
-          '';
-          "<C-p>" = ''
-            function(fallback) do
-              if cmp.visible() then
-                cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
-              else
-                fallback()
-              end
-            end
-          '';
-          "<CR>" = ''
-            function(fallback)
+        mapping = {
+          "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          "<Tab>" = ''
+            cmp.mapping(function(fallback)
+              local luasnip = require('luasnip')
               if cmp.visible() then
                 cmp.confirm({ select = true })
+              elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
               else
                 fallback()
               end
-            end
+            end, {'i', 's'})
           '';
+          "<S-Tab>" = ''
+            cmp.mapping(function(fallback)
+              local luasnip = require('luasnip')
+              if luasnip.locally_jumpable(-1) then
+                luasnip.jump(-1)
+              else
+                fallback()
+              end
+            end, {'i', 's'})
+          '';
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
         };
         snippet.expand = ''
           function(args)
-            require('snippy').expand_snippet(args.body)
+            require('luasnip').lsp_expand(args.body)
           end
         '';
       };
