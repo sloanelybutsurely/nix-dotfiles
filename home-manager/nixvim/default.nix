@@ -186,6 +186,7 @@
         mapping = {
           "<C-n>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           "<C-p>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+          "<C-y>" = "cmp.mapping.confirm({ select = true })";
           "<Tab>" = ''
             cmp.mapping(function(fallback)
               local luasnip = require('luasnip')
@@ -208,7 +209,6 @@
               end
             end, {'i', 's'})
           '';
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
         };
         snippet.expand = ''
           function(args)

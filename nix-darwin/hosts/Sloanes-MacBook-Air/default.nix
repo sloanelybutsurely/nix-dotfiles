@@ -18,5 +18,9 @@
     casks = [
       "discord"
     ];
+
+    masApps = {
+      Crouton = 1461650987;
+    };
   };
 }
