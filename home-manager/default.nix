@@ -13,10 +13,11 @@
     };
 
     packages = with pkgs; [
+      awscli2
       difftastic
+      httpie
       ripgrep
       watchman
-      awscli2
     ];
   };
 
