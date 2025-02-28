@@ -151,6 +151,7 @@
         typescript
         css
         html
+        terraform
       ];
     };
 
