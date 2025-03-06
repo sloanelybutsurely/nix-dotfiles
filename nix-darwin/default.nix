@@ -52,6 +52,7 @@
     };
 
     brews = [
+      "libyaml"
       "mas"
       "openssl"
       "wxwidgets"
