@@ -85,6 +85,7 @@
     text = ''
       pane_frames false
       theme "catppuccin-mocha"
+      session_serialization false
 
       ui {
         pane_frames {
