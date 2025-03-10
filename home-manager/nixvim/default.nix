@@ -2,7 +2,22 @@
   programs.nixvim = {
     enable = true;
 
-    globals = { mapleader = " "; };
+    globals = {
+      mapleader = " ";
+      projectionist_heuristics = {
+        "mix.exs" = {
+          "lib/*.ex" = {
+            type = "source";
+            alternate = "test/{}_test.exs";
+          };
+          "test/*_test.exs" = {
+            type = "test";
+            alternate = "lib/{}.ex";
+            dispatch  = "mix test {file}";
+          };
+        };
+      };
+    };
 
     opts = {
       number = true;
@@ -121,7 +136,14 @@
       command = "lua vim.lsp.buf.format()";
     }];
 
-    extraPlugins = with pkgs.vimPlugins; [ vim-abolish nerdtree vim-rhubarb ];
+    extraPlugins = with pkgs.vimPlugins; [
+      vim-abolish
+      nerdtree
+      vim-rhubarb
+      vim-dispatch
+      vim-dispatch-neovim
+      vim-projectionist
+    ];
 
     plugins.commentary.enable = true;
     plugins.repeat.enable = true;
