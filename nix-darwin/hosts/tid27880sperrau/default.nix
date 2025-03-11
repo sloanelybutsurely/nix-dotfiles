@@ -16,6 +16,7 @@
   homebrew = {
     casks = [
       "discord"
+      "keycastr"
       "postgres-unofficial"
       "postico"
       "slack"

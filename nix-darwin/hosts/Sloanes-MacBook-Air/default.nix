@@ -17,6 +17,7 @@
   homebrew = {
     casks = [
       "discord"
+      "keycastr"
     ];
 
     masApps = {
