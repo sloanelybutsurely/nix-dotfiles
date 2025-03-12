@@ -87,12 +87,12 @@
       }
       {
         key = "<leader><tab>";
-        action = "<cmd>NERDTreeToggle<cr>";
+        action = "<cmd>NvimTreeToggle<cr>";
         mode = [ "n" ];
       }
       {
         key = "<leader>fl";
-        action = "<cmd>NERDTreeFind<cr>";
+        action = "<cmd>NvimTreeFindFile<cr>";
         mode = [ "n" ];
       }
       {
@@ -138,7 +138,6 @@
 
     extraPlugins = with pkgs.vimPlugins; [
       vim-abolish
-      nerdtree
       vim-rhubarb
       vim-dispatch
       vim-dispatch-neovim
@@ -253,6 +252,12 @@
 
     plugins.which-key = {
       enable = true;
+    };
+
+    plugins.nvim-tree = {
+      enable = true;
+      disableNetrw = true;
+      openOnSetup = true;
     };
   };
 }
