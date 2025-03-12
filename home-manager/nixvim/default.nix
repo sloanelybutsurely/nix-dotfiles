@@ -245,5 +245,10 @@
     };
 
     plugins.zellij-nav.enable = true;
+
+    plugins.neotest = {
+      enable = true;
+      adapters.elixir.enable = true;
+    };
   };
 }
