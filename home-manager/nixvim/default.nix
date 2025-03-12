@@ -250,5 +250,9 @@
       enable = true;
       adapters.elixir.enable = true;
     };
+
+    plugins.which-key = {
+      enable = true;
+    };
   };
 }
