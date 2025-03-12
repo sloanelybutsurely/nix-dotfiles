@@ -172,7 +172,10 @@
       };
     };
 
-    plugins.telescope.enable = true;
+    plugins.telescope = {
+      enable = true;
+      extensions.fzf-native.enable = true;
+    };
 
     plugins.cmp = {
       enable = true;
