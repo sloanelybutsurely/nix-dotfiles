@@ -72,6 +72,7 @@
       "keepingyouawake"
       "obsidian"
       "rectangle"
+      "superduper"
       "tailscale"
       "unnaturalscrollwheels"
     ];
