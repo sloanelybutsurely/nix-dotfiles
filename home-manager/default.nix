@@ -17,6 +17,7 @@
       difftastic
       httpie
       ripgrep
+      stripe-cli
       watchman
     ];
   };
