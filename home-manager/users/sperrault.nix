@@ -4,5 +4,9 @@
   home = {
     username = "sperrault";
     homeDirectory = "/Users/sperrault";
+
+    sessionPath = [
+      "/Applications/Postgres.app/Contents/Versions/latest/bin"
+    ];
   };
 }

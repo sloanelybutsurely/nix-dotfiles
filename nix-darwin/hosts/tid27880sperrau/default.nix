@@ -14,9 +14,21 @@
   };
 
   homebrew = {
+    brews = [
+      "make"
+      "wget"
+      "zlib"
+      "sqlite3"
+      "spatialindex"
+      "pcre"
+      "gdal"
+      "xz"
+    ];
     casks = [
+      "chromedriver"
       "discord"
       "keycastr"
+      "mouseless@preview"
       "postgres-unofficial"
       "postico"
       "slack"

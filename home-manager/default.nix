@@ -28,6 +28,7 @@
       font-size = 16
       theme = "catppuccin-mocha"
       confirm-close-surface = false
+      link-url = true
     '';
   };
 
@@ -63,7 +64,10 @@
     enableFishIntegration = true;
   };
 
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   programs.mise = {
     enable = true;
