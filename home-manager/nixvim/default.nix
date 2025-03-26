@@ -142,6 +142,7 @@
       vim-dispatch
       vim-dispatch-neovim
       vim-projectionist
+      splitjoin-vim
     ];
 
     plugins.commentary.enable = true;
