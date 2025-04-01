@@ -189,9 +189,10 @@
         ts_ls.enable = true;
       };
       keymaps.lspBuf = {
-        gd = "definition";
-        gi = "implementation";
-        gr = "references";
+        grn = "rename";
+        grr = "references";
+        gri = "implementation";
+        grd = "definition";
       };
     };
 
