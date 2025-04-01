@@ -62,6 +62,7 @@
       "1password"
       "alfred"
       "arq"
+      "claude"
       "dash@6"
       "fantastical"
       "firefox"
