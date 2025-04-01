@@ -6,7 +6,7 @@
     homeDirectory = "/Users/sperrault";
 
     sessionPath = [
-      "/Applications/Postgres.app/Contents/Versions/latest/bin"
+      "/Applications/Postgres.app/Contents/Versions/15/bin"
     ];
   };
 }
