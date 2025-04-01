@@ -186,6 +186,7 @@
         nixd.enable = true;
         tailwindcss.enable = true;
         terraform_lsp.enable = true;
+        ts_ls.enable = true;
       };
       keymaps.lspBuf = {
         gd = "definition";
