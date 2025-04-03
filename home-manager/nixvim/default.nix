@@ -264,5 +264,16 @@
     };
 
     plugins.copilot-lua.enable = true;
+    plugins.copilot-cmp.enable = true;
+    plugins.codecompanion = {
+      enable = true;
+      settings = {
+        strategies = {
+          agent.adapter = "copilot";
+          chat.adapter = "copilot";
+          inline.adapter = "copilot";
+        };
+      };
+    };
   };
 }
