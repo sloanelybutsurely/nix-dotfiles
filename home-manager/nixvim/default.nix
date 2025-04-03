@@ -262,5 +262,7 @@
       disableNetrw = true;
       openOnSetup = false;
     };
+
+    plugins.copilot-lua.enable = true;
   };
 }
