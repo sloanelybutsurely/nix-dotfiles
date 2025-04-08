@@ -75,8 +75,9 @@
     globalConfig = {
       tools = {
         usage = "latest";
-        erlang = "27.2.3";
-        elixir = "1.18.2-otp-27";
+        erlang = "latest";
+        elixir = "latest";
+        nodejs = "lts";
       };
     };
     settings.experimental = true;
