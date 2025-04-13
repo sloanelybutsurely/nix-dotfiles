@@ -60,6 +60,7 @@
 
     casks = [
       "1password"
+      "1password-cli"
       "alfred"
       "arq"
       "claude"
