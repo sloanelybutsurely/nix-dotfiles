@@ -10,6 +10,7 @@
 
     sessionVariables = {
       SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
+      EDITOR = "nvim";
     };
 
     packages = with pkgs; [
@@ -189,7 +190,7 @@
         email = "git@sloanelybutsurely.com";
       };
       signing = {
-        sign-all = true;
+        behavior = "own";
         backend = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID0TH2GezEx8+zlKBqUb7rBsbmghnd1u4nX6YpQr28Zw";
         backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
