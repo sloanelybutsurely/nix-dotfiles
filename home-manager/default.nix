@@ -35,6 +35,17 @@
 
   programs.fish = {
     enable = true;
+    plugins = [
+      {
+        name = "transient.fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "zzhaolei";
+          repo = "transient.fish";
+          rev = "7091a1ef574e4c2d16779e59d37ceb567128c787";
+          hash = "sha256-rZqMQiVGEEYus5MxkpFhaXnjVStmsjWkGly4B6bjcks=";
+        };
+      }
+    ];
     interactiveShellInit = ''
       fish_vi_key_bindings
 
