@@ -18,6 +18,7 @@
     casks = [
       "discord"
       "keycastr"
+      "netnewswire"
     ];
 
     masApps = {

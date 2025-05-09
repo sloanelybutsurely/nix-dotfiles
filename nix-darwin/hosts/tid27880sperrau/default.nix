@@ -29,6 +29,7 @@
       "discord"
       "keycastr"
       "mouseless@preview"
+      "netnewswire"
       "postgres-unofficial"
       "postico"
       "slack"
