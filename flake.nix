@@ -13,29 +13,6 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nixvim }:
   {
-    darwinConfigurations."tid27880sperrau" = nix-darwin.lib.darwinSystem {
-      modules = [
-        {
-          system.configurationRevision = self.rev or self.dirtyRev or null;
-        }
-        ./nix-darwin
-        ./nix-darwin/hosts/tid27880sperrau
-        home-manager.darwinModules.home-manager
-        {
-          users.users.sperrault.home = "/Users/sperrault";
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "before-home-manager";
-            extraSpecialArgs = {
-              inherit nixvim;
-            };
-            users.sperrault = import ./home-manager/users/sperrault.nix;
-          };
-        }
-      ];
-    };
-
     darwinConfigurations."Sloanes-MacBook-Air" = nix-darwin.lib.darwinSystem {
       modules = [
         {
