@@ -204,6 +204,7 @@
       revsets.log = "trunk() | ancestors(reachable(@ | mine(), mutable()), 2) | @";
       git = {
         push-bookmark-prefix = "sloane/push-";
+        push-new-bookmarks = true;
         private-commits = "wip | nocommit | dev-only";
       };
       revset-aliases = {
@@ -211,6 +212,15 @@
         nocommit = ''description(regex:"^\\[(nocommit|NOCOMMIT)\\]|(nocommit|NOCOMMIT):?")'';
         dev-only = ''description(regex:"^\\[(dev-only|DEV-ONLY)\\]|(dev-only|DEV-ONLY):?")'';
         current = ''(bookmarks() | wip | dev-only) & mine()'';
+        "closest_bookmark(to)" = "heads(::to & bookmarks())";
+      };
+      aliases = {
+        r = ["rebase"];
+        s = ["squash"];
+        n = ["new"];
+        e = ["edit"];
+        tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
+        catchup = ["rebase" "-b" "all(current() ~immutable())" "-d" "trunk()" "--skip-emptied"];
       };
     };
   };
