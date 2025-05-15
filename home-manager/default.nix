@@ -45,6 +45,7 @@
     shellAbbrs = {
       drs = "darwin-rebuild switch --flake ~/.config/nix-darwin";
       j = "jj";
+      cat = "bat";
     };
   };
   home.file.".config/fish/completions/jj.fish" = {
@@ -224,4 +225,6 @@
       };
     };
   };
+
+  programs.bat.enable = true;
 }
