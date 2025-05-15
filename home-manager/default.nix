@@ -41,15 +41,14 @@
       if not set -q ZELLIJ
         zellij attach --create default
       end
+
+      COMPLETE=fish jj | source
     '';
     shellAbbrs = {
       drs = "darwin-rebuild switch --flake ~/.config/nix-darwin";
       j = "jj";
       cat = "bat";
     };
-  };
-  home.file.".config/fish/completions/jj.fish" = {
-    source = ./dotfiles/fish/completions/jj.fish;
   };
   home.file.".config/fish/functions/fish_prompt.fish" = {
     source = ./dotfiles/fish/functions/fish_prompt.fish;
