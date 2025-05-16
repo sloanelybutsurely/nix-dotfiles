@@ -211,7 +211,7 @@
         wip = ''description(regex:"^\\[(wip|WIP|todo|TODO)\\]|(wip|WIP|todo|TODO):?")'';
         nocommit = ''description(regex:"^\\[(nocommit|NOCOMMIT)\\]|(nocommit|NOCOMMIT):?")'';
         dev-only = ''description(regex:"^\\[(dev-only|DEV-ONLY)\\]|(dev-only|DEV-ONLY):?")'';
-        current = ''(bookmarks() | wip | dev-only) & mine()'';
+        current = ''(bookmarks() | wip | dev-only) & mine() & ~immutable()'';
         "closest_bookmark(to)" = "heads(::to & bookmarks())";
       };
       aliases = {
@@ -220,7 +220,7 @@
         n = ["new"];
         e = ["edit"];
         tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
-        catchup = ["rebase" "-b" "all(current() ~immutable())" "-d" "trunk()" "--skip-emptied"];
+        catchup = ["rebase" "-b" "all:current" "-d" "trunk()" "--skip-emptied"];
       };
     };
   };
