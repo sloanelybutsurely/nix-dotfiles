@@ -18,6 +18,7 @@
     casks = [
       "discord"
       "keycastr"
+      "linear-linear"
       "netnewswire"
     ];
   };
