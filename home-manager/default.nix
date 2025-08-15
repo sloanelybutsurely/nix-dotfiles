@@ -237,4 +237,6 @@
       };
     };
   };
+
+  programs.fd.enable = true;
 }
