@@ -263,10 +263,10 @@
       openOnSetup = false;
     };
 
-    plugins.copilot-lua.enable = true;
-    plugins.copilot-cmp.enable = true;
+    plugins.copilot-lua.enable = false;
+    plugins.copilot-cmp.enable = false;
     plugins.codecompanion = {
-      enable = true;
+      enable = false;
       settings = {
         strategies = {
           agent.adapter = "copilot";
