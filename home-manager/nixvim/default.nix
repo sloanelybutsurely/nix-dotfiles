@@ -259,7 +259,7 @@
 
     plugins.nvim-tree = {
       enable = true;
-      disableNetrw = true;
+      settings.disable_netrw = true;
       openOnSetup = false;
     };
 

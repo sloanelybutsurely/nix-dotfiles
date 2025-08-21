@@ -184,13 +184,13 @@
   programs.jujutsu = {
     enable = true;
     settings = {
-      core.fsmonitor = "watchman";
+      fsmonitor.backend = "watchman";
       user = {
         name = "sloane";
         email = "git@sloanelybutsurely.com";
       };
       signing = {
-        sign-all = true;
+        behavior = "own";
         backend = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID0TH2GezEx8+zlKBqUb7rBsbmghnd1u4nX6YpQr28Zw";
         backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign";
@@ -199,13 +199,15 @@
         paginate = "never";
         default-command = "log";
         editor = "nvim";
-        diff.tool = ["difft" "--color=always" "$left" "$right"];
+        diff-formatter = ["difft" "--color=always" "$left" "$right"];
       };
       revsets.log = "trunk() | ancestors(reachable(@ | mine(), mutable()), 2) | @";
       git = {
-        push-bookmark-prefix = "sloane/push-";
         push-new-bookmarks = true;
         private-commits = "wip | nocommit | dev-only";
+      };
+      templates = {
+        git_push_bookmark = ''"sloane/push-" ++ change_id.short()'';
       };
       revset-aliases = {
         wip = ''description(regex:"^\\[(wip|WIP|todo|TODO)\\]|(wip|WIP|todo|TODO):?")'';
@@ -220,7 +222,8 @@
         n = ["new"];
         e = ["edit"];
         tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
-        catchup = ["rebase" "-b" "all:current" "-d" "trunk()" "--skip-emptied"];
+        catchup = ["rebase" "-b" "current" "-d" "trunk()" "--skip-emptied"];
+        changed = ["diff" "--files-only"];
       };
     };
   };

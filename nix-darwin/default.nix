@@ -12,6 +12,9 @@
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
+  # Set the primary user for system defaults
+  system.primaryUser = "sloane";
+
   security.pam.services.sudo_local = {
     enable = true;
     reattach = true;
