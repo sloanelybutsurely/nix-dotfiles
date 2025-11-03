@@ -246,6 +246,7 @@
         tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
         catchup = ["rebase" "-b" "current" "-d" "trunk()" "--skip-emptied"];
         changed = ["diff" "--files-only"];
+        init = ["git" "init"];
       };
     };
   };
