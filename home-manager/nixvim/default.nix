@@ -180,7 +180,12 @@
     plugins.lsp = {
       enable = true;
       servers = {
-        elixirls.enable = true;
+        elixirls = {
+          enable = true;
+          settings = {
+            dialyzerEnabled = false;
+          };
+        };
         fish_lsp.enable = true;
         html.enable = true;
         nixd.enable = true;
