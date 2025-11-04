@@ -69,6 +69,7 @@
     shellAbbrs = {
       drs = "darwin-rebuild switch --flake ~/.config/nix-darwin";
       j = "jj";
+      jst = "jj status";
       cat = "bat";
     };
   };
@@ -246,7 +247,7 @@
         tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
         catchup = ["rebase" "-b" "current" "-d" "trunk()" "--skip-emptied"];
         changed = ["diff" "--files-only"];
-        init = ["git" "init"];
+        init = ["git" "init" "--colocate"];
       };
     };
   };
