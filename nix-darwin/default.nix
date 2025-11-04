@@ -64,6 +64,7 @@
       "mas"
       "openssl"
       "wxwidgets"
+      "schpet/tap/linear"
     ];
 
     casks = [
