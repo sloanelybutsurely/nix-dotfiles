@@ -57,6 +57,11 @@
 
   programs.fish = {
     enable = true;
+    shellInit = ''
+      if test -d ~/.claude/local
+        fish_add_path ~/.claude/local
+      end
+    '';
     interactiveShellInit = ''
       fish_vi_key_bindings
 
