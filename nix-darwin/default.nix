@@ -31,7 +31,7 @@
     finder = {
       AppleShowAllExtensions = true;
       AppleShowAllFiles = true;
-      CreateDesktop = false;
+      CreateDesktop = true;
       FXDefaultSearchScope = "SCcf"; # current folder
       FXEnableExtensionChangeWarning = false;
       NewWindowTarget = "Home";
@@ -56,12 +56,10 @@
     };
     onActivation = {
       autoUpdate = false;
-      cleanup = "uninstall";
     };
 
     brews = [
       "libyaml"
-      "mas"
       "openssl"
       "wxwidgets"
       "schpet/tap/linear"
@@ -87,10 +85,5 @@
       "tailscale"
       "unnaturalscrollwheels"
     ];
-
-    masApps = {
-      Things = 904280696;
-      "Hand Mirror" = 1502839586;
-    };
   };
 }

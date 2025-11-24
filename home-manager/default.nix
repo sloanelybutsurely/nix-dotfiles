@@ -11,6 +11,7 @@
     sessionVariables = {
       SSH_AUTH_SOCK = "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock";
       EDITOR = "nvim";
+      MISE_EXPERIMENTAL = 1;
     };
 
     packages = with pkgs; [
@@ -61,6 +62,8 @@
       if test -d ~/.claude/local
         fish_add_path ~/.claude/local
       end
+
+      mise activate fish | source
     '';
     interactiveShellInit = ''
       fish_vi_key_bindings
@@ -98,19 +101,19 @@
     nix-direnv.enable = true;
   };
 
-  programs.mise = {
-    enable = true;
-    enableFishIntegration = true;
-    globalConfig = {
-      tools = {
-        usage = "latest";
-        erlang = "latest";
-        elixir = "latest";
-        nodejs = "lts";
-      };
-    };
-    settings.experimental = true;
-  };
+  # programs.mise = {
+  #   enable = true;
+  #   enableFishIntegration = true;
+  #   globalConfig = {
+  #     tools = {
+  #       usage = "latest";
+  #       erlang = "latest";
+  #       elixir = "latest";
+  #       nodejs = "lts";
+  #     };
+  #   };
+  #   settings.experimental = true;
+  # };
 
   programs.zellij = {
     enable = true;
